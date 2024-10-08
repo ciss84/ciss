@@ -4,7 +4,7 @@ https://mk57blog.wordpress.com/2017/01/28/comment-modifier-la-version-par-defaut
 
 # git clone --recursive https://github.com/sleirsgoevy/ps4jb-payloads; cd ps4jb-payloads; git checkout --branch bd-jb
 
-# sudo apt upgrade
+# sudo apt update
 # sudo apt install gcc yasm python3 pip git nano
 
 # Create symbols.json and first line should be... {"allproc": <Firmware dec #>}
