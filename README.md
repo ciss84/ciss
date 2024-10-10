@@ -9,6 +9,7 @@ https://mk57blog.wordpress.com/2017/01/28/comment-modifier-la-version-par-defaut
 
 # ///////////////////////////////////////
 # sudo apt update
+# sudo apt upgrade
 # sudo apt install gcc yasm python3 pip git nano
 
 # git clone https://github.com/sleirsgoevy/ps4jb-payloads.git --recursive --recurse-submodules -b bd-jb
