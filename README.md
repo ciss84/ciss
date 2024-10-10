@@ -19,5 +19,5 @@
 # Ex. {"allproc": 43048192}
 
 # cd ps4jb-payloads/ps5-kstuff/porting_tool
-# python3 main.py symbols.json 192.168.1.5 9020
+# python3 main.py symbols.json 192.168.1.5 9020 kernel-data.bin
 
