@@ -1,5 +1,5 @@
 # ciss
-
+https://1fichier.com/?29ewrdmamrf6acoo4pza
 # git clone --recursive https://github.com/sleirsgoevy/ps4jb-payloads; cd ps4jb-payloads; git checkout --branch bd-jb
 # git clone https://github.com/ciss84/ps5-kstuff-builds.git --recursive --recurse-submodules -b bd-jb
 # cd ps5-kstuff-builds/ps5-kstuff/porting_tool
