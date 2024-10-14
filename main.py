@@ -112,22 +112,6 @@ def get_kernel(_cache=[]):
         _cache.append(dump_kernel())
     return _cache[0]
 
-@derivations
-@retry_on_error
-def XXX():
-    gdb.use_r0gdb(R0GDB_FLAGS)
-    kdata_base = gdb.ieval('kdata_base')
-    gdb.eval('offsets.allproc = '+ostr(kdata_base + symbols['allproc']))
-    if not gdb.ieval('rpipe'): gdb.eval('r0gdb_init_with_offsets()')
-    proc = gdb.ieval('{void*}'+ostr(kdata_base + symbols['allproc']))
-    while proc != 0:
-        pid = gdb.ieval('{int}'+ostr(proc+0xbc))
-        fd = gdb.ieval('{void*}'+ostr(proc+0x48))
-        root = gdb.ieval('{void*}'+ostr(fd+16))
-        print('pid = %d, root = %s'%(pid, ostr(root)))
-        proc = gdb.ieval('{void*}'+ostr(proc))
-    assert False
-
 @derive_symbol
 @retry_on_error
 def idt():
@@ -208,7 +192,21 @@ def sysents_ps4(): return deref('sysentvec_ps4', 8)
 def mini_syscore_header():
     kernel, kdata_base = get_kernel()
     gdb.use_r0gdb(R0GDB_FLAGS)
-    remote_fd = gdb.ieval('(int)open("/mini-syscore.elf", 0)')
+    try: remote_fd = gdb.ieval('(int)open("/mini-syscore.elf", 0)')
+    except gdb.DisconnectedException:
+        gdb.use_r0gdb(R0GDB_FLAGS)
+        md0 = bytearray()
+        with gdb_rpc.BlobReceiver(gdb, md0, 'dumping /dev/md0') as addr:
+            socket_fd = gdb.ieval('r0gdb_open_socket("%s", %d)'%addr)
+            assert socket_fd >= 0
+            md0_fd = gdb.ieval('(int)open("/dev/md0", 0)')
+            assert md0_fd >= 0
+            gdb.ieval('r0gdb_sendfile(%d, %d)'%(md0_fd, socket_fd))
+            assert not gdb.ieval('(int)close(%d)'%md0_fd)
+            assert not gdb.ieval('(int)close(%d)'%socket_fd)
+            time.sleep(10)
+        open('md0.img', 'wb').write(md0)
+        assert False
     remote_buf = gdb.ieval('malloc(4096)')
     assert gdb.ieval('(int)read(%d, %d, 4096)'%(remote_fd, remote_buf)) == 4096
     gdb.execute('set print elements 0')
