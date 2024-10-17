@@ -8,6 +8,7 @@ https://1fichier.com/?29ewrdmamrf6acoo4pza
 # ///////////////////////////////////////
 # sudo apt update
 # sudo apt upgrade
+# sudo apt install build-essential
 # sudo apt install gcc yasm python3 pip git nano
 
 # git clone https://github.com/sleirsgoevy/ps4jb-payloads.git --recursive --recurse-submodules -b bd-jb
