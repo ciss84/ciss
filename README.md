@@ -24,3 +24,4 @@ https://1fichier.com/?29ewrdmamrf6acoo4pza
 # cd ps4jb-payloads/ps5-kstuff/porting_tool
 # python3 main.py symbols.json 192.168.1.5 9020 kernel-data.bin
 
+"mmap_self_fix_2_start": [], "mmap_self_fix_1_start": [],
