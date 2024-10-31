@@ -6,7 +6,7 @@ https://1fichier.com/?29ewrdmamrf6acoo4pza
 # git clone https://github.com/ciss84/ps5-kstuff-builds.git --recursive --recurse-submodules -b bd-jb
 # cd ps5-kstuff-builds/ps5-kstuff/porting_tool
 # python3 main.py symbols.json 192.168.1.5 9020 kernel-data.bin
-
+;
 # ///////////////////////////////////////
 # sudo apt update
 # sudo apt upgrade
